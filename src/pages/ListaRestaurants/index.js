@@ -1,6 +1,8 @@
 import React,{useState,useEffect, Fragment} from 'react'
+import {ScrollView} from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Spinner } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 
 import { fetchRestaurants } from '../../redux/actions/restaurantActions'
 import Restaurant from '../../components/Restaurant'
@@ -16,20 +18,31 @@ export default ({navigation}) => {
   
   return (
       <Container>
-        <Fragment>
-          {
-            loading?
-              <Spinner color='blue' />
-            :
-              <List>
-                {
-                  restaurantes.map((x,i)=>{
-                    return <Restaurant key={i} restaurant={x} /> 
-                  })
-                }
-              </List>
-          }  
-        </Fragment>
+        <Grid>
+          <ScrollView>
+            <Col>
+              {
+                loading?
+                  <Spinner style={styles.containerList} color='blue' />
+                :
+                  <List>
+                    {
+                      restaurantes.map((x,i)=>{
+                        return <Restaurant key={i} restaurant={x} /> 
+                      })
+                    }
+                  </List>
+              }  
+            </Col>
+          </ScrollView>
+        </Grid>
       </Container>
     );
+}
+
+const styles = {
+  containerList: {
+    alignItems: "center",
+    width: "100%"
+  }
 }

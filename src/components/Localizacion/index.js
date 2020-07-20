@@ -3,7 +3,7 @@ import { View, AsyncStorage } from 'react-native'
 import { Container, Header, Content, Item, Picker, Form, H3, Button, Text } from "native-base";
 
 export default ({navigation, route}) => {
-  const [selected, setSelected] = useState('')
+  const [selected, setSelected] = useState('Jesus Maria')
 
   useEffect(()=>{
     AsyncStorage.getItem('localidad', (err, rsp)=>{
@@ -18,10 +18,10 @@ export default ({navigation, route}) => {
   }
 
   const handleAceptar = () => {
-    if(selected!=''){
+    if(selected != ''){
       AsyncStorage.setItem("localidad", selected);
-      route.params.onGoBack()
       navigation.goBack()
+      route.params.onGoBack()
     }
   }
 

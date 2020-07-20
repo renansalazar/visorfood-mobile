@@ -9,6 +9,7 @@ export default ({navigation}) => {
   const [searchText, setSearchText] = useState('')
 
   useLayoutEffect(() => {
+    //AsyncStorage.removeItem('localidad')
     navigation.setOptions({
       headerRight: () => (
         <Button 
@@ -21,6 +22,7 @@ export default ({navigation}) => {
   }, []);
   
   const refresco = () => {
+    //alert("selected")
     navigation.navigate('Results', { searchText })
   }
 
